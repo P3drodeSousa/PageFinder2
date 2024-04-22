@@ -30,7 +30,7 @@ export default function Home() {
     }
   }
 
-  console.log(results);
+  console.log("results", results);
   return (
     <div className="h-screen w-screen grid place-items-center">
       <input
@@ -53,12 +53,14 @@ export default function Home() {
 function Result({ result }: { result: any }) {
   const [data, setData] = useState<any>(null);
 
+  console.log(result);
   useEffect(() => {
     async function fetchData() {
       const data = await result.data();
       setData(data);
     }
     fetchData();
+    console.log("data", data);
   }, [result]);
 
   if (!data) return null;

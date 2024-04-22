@@ -13,7 +13,7 @@ export default function Home() {
         try {
           window.pagefind = await import(
             // @ts-expect-error pagefind.js generated after build
-            /* webpackIgnore: true */ "./pagefind/pagefind.js"
+            /* webpackIgnore: true */ "../pages/pagefind/pagefind.js"
           );
         } catch (e) {
           window.pagefind = { search: () => ({ results: [] }) };

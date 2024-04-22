@@ -36,7 +36,7 @@ export default function Home() {
     loadPagefind();
   }, []);
 
-  async function handleSearch(e) {
+  async function handleSearch(e: any) {
     e.preventDefault();
 
     if (window.pagefind) {

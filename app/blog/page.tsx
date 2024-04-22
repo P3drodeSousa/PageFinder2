@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 async function getData() {
   const res = await fetch(
     `https://ij0p5befru.preview.infomaniak.website/wp-json/wp/v2/posts?lang=fr`

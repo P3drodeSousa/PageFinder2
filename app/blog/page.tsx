@@ -14,12 +14,9 @@ export default async function Blog() {
       {data.map((blog: any) => {
         return (
           <div key={blog.id} className="flex-1">
-            <h2
-              className="text-xl font-bold font-display my-3 hover:text-primary transition-all"
-              dangerouslySetInnerHTML={{
-                __html: blog.title.rendered,
-              }}
-            />
+            <h2 className="text-xl font-bold font-display my-3 hover:text-primary transition-all">
+              {blog.title.rendered}
+            </h2>
 
             <div
               dangerouslySetInnerHTML={{

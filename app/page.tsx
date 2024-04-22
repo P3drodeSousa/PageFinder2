@@ -41,6 +41,7 @@ export default function Home() {
 
     if (window.pagefind) {
       const search = await window.pagefind.debouncedSearch(query);
+      console.log(search);
       setResults(search.results);
     }
   }

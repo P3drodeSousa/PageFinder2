@@ -6,26 +6,41 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<any>([]);
-
   useEffect(() => {
     async function loadPagefind() {
       if (typeof window.pagefind === "undefined") {
         try {
           window.pagefind = await import(
-            // @ts-expect-error pagefind.js generated after build
+            // @ts-expect-error pagefind generated after build
             /* webpackIgnore: true */ "../pages/pagefind/pagefind.js"
           );
-        } catch (e) {
-          window.pagefind = { search: () => ({ results: [] }) };
+        } catch (error) {
+          window.pagefind = {
+            debouncedSearch: () => ({
+              results: [
+                {
+                  id: "pretzels",
+                  data: async () => ({
+                    url: "/pretzels.html",
+                    meta: { title: "These pretzels are making me thirsty" },
+                    excerpt:
+                      "these <mark>pretzels</mark> are making me thirsty",
+                  }),
+                },
+              ],
+            }),
+          };
         }
       }
     }
     loadPagefind();
   }, []);
 
-  async function handleSearch() {
+  async function handleSearch(e) {
+    e.preventDefault();
+
     if (window.pagefind) {
-      const search = await window.pagefind.search(query);
+      const search = await window.pagefind.debouncedSearch(query);
       setResults(search.results);
     }
   }
